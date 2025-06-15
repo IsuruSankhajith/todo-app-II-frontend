@@ -1,16 +1,25 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import type { TodoTypes } from '../todo';
 import TodoService from '../TodoService';
 import { FaEdit, FaCheck } from "react-icons/fa";
 import TodoForm from './TodoForm';
 import { GiCancel } from "react-icons/gi";
 import { RiDeleteBinFill } from 'react-icons/ri';
-import "../CSS/TodoList.css" // Ensure this path is correct
+import "../CSS/TodoList.css" // 
 
 const TodoList: React.FC = () => {
-  const [todos, setTodos] = useState<TodoTypes[]>(TodoService.getTodos());
+  const [todos, setTodos] = useState<TodoTypes[]>([]);
   const [editingTodo, setEditingTodo] = useState<number | null>(null);
   const [editedTodoText, setEditedTodoText] = useState<string>('');
+
+  useEffect(() => {
+    const fetchTodos = async () => {
+      const todoList = await TodoService.getTodos(); 
+      setTodos(todoList); 
+    };
+
+    fetchTodos(); 
+  }, []);
 
   const handleEditStart = (id: number, text: string) => {
     setEditingTodo(id);
@@ -25,7 +34,7 @@ const TodoList: React.FC = () => {
   const handleEditSave = (id: number) => {
     if (editedTodoText.trim() !== '') {
       const updatedTodos = TodoService.updateTodo(id, {
-        text: editedTodoText,
+        title: editedTodoText,
         completed: false,
       });
 
@@ -65,8 +74,8 @@ const TodoList: React.FC = () => {
             </div>
           ) : (
             <div className="editBtn">
-              <span>{todo.text}</span>
-              <button onClick={() => handleEditStart(todo.id, todo.text)}>
+              <span>{todo.title}</span>
+              <button onClick={() => handleEditStart(todo.id, todo.title)}>
                 <FaEdit />
               </button>
               <button onClick={() => handleDeleteTodo(todo.id)}>Delete</button>
