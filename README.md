@@ -23,5 +23,6 @@ This is the **frontend** part of a full-stack Todo List application built using 
 
 ## Demonstration 
 
+---
 ## Documentation  
 
