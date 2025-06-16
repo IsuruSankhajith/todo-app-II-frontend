@@ -8,7 +8,7 @@ function App() {
       <div className="header">
         <div className="logoside">
           <FaPen />
-          <h1>What to do</h1>
+          <h1>TO DO LIST</h1>
           <FaClipboardList />
         </div>
       </div>

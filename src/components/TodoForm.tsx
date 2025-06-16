@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import type { Dispatch, SetStateAction } from 'react';
 import TodoService from '../TodoService';
 import type { TodoTypes } from '../todo';
-import "../CSS/TodoForm.css" // Ensure this path is correct
+import "../CSS/TodoForm.css" 
 
 
 interface PropTypes {
@@ -22,10 +22,10 @@ const TodoForm: React.FC<PropTypes> = ({ setTods }) => {
       setNewTodoText('');
     }
   };
-
+ 
   return (
     <div className='inputform'>
-      <input
+      <input  
         type="text"
         value={newTodoText}
         onChange={(e) => setNewTodoText(e.target.value)}

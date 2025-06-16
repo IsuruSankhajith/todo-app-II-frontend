@@ -43,7 +43,7 @@ const TodoList: React.FC = () => {
       setEditedTodoText('');
     }
   };
-
+  
   //Function to handle deleting a todo
   const handleDeleteTodo = (id: number) => {
     TodoService.deleteTodo(id);
@@ -53,7 +53,7 @@ const TodoList: React.FC = () => {
   return (
     <div className="todoContainer">
       <div>
-        <TodoForm setTods={setTodos} /> {/* Make sure prop name matches TodoForm */}
+        <TodoForm setTods={setTodos} /> {}
       </div>
 
       {todos.map((todo) => (
